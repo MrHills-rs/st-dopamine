@@ -627,7 +627,7 @@ jQuery(async () => {
         const { renderExtensionTemplateAsync } = await import('../../../extensions.js');
         const html = await renderExtensionTemplateAsync('third-party/st-dopamine', 'settings');
 
-        const getContainer = () => $(document.getElementById('dopamine_settings_container') ?? document.getElementById('extensions_settings2'));
+        const getContainer = () => $(document.getElementById('st-dopamine-container') ?? document.getElementById('extensions_settings2'));
         getContainer().append(html);
 
         // Bind settings controls
