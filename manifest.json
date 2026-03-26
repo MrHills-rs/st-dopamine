@@ -1,0 +1,12 @@
+{
+    "display_name": "Dopamine",
+    "loading_order": 50,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Qwen35",
+    "version": "0.0.1",
+    "homePage": "",
+    "auto_update": false
+}
