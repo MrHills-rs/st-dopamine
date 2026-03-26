@@ -627,7 +627,8 @@ jQuery(async () => {
         const { renderExtensionTemplateAsync } = await import('../../../extensions.js');
         const html = await renderExtensionTemplateAsync('third-party/st-dopamine', 'settings');
 
-        const getContainer = () => $(document.getElementById('st-dopamine-container') ?? document.getElementById('extensions_settings2'));
+        // FIXED: Use consistent container selector
+        const getContainer = () => $(document.getElementById('dopamine_container') ?? document.getElementById('extensions_settings2'));
         getContainer().append(html);
 
         // Bind settings controls
@@ -647,7 +648,7 @@ jQuery(async () => {
         $('#dopamine_polling_interval').on('change', () => {
             extension_settings.dopamine.pollingIntervalSeconds = Number($('#dopamine_polling_interval').val());
             saveSettingsDebounced();
-            startPolling(); // Restart with new interval
+            startPolling();
         });
 
         $('#dopamine_enabled').prop('checked', extension_settings.dopamine.enabled);
@@ -680,20 +681,6 @@ jQuery(async () => {
         startPolling();
     }
 
-    // Register debug functions
-    registerDebugFunction('clearDopamineCache', 'Clear Dopamine timers', 'Deletes all active timers and alarms.', async () => {
-        await storage.clear();
-        console.log('[Dopamine] All timers cleared');
-        toastr.success('[Dopamine] All timers and alarms cleared');
-        renderSettings();
-    });
-
-    registerDebugFunction('listDopamineTimers', 'List Dopamine timers', 'Logs all active timers and alarms to console.', async () => {
-        const { timers, alarms } = await loadAllTimers();
-        console.log('[Dopamine] Active Timers:', timers);
-        console.log('[Dopamine] Active Alarms:', alarms);
-        toastr.info(`[Dopamine] ${timers.length} timers, ${alarms.length} alarms active`);
-    });
-
     console.log('[Dopamine] Extension initialized');
 });
+

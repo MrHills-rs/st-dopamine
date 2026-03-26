@@ -56,7 +56,7 @@
 }
 
 .st-dopamine-settings .dopamine-item:hover {
-    background: var(--SmartThemeMonochromeTint, rgba(255, 255, 255, 0.08));
+    background: var(--SmartThemeMonochromeTint, rgba(255, 255, 255, 0.1));
 }
 
 .st-dopamine-settings .dopamine-id {
