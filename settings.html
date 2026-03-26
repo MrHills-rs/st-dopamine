@@ -1,35 +1,43 @@
-<div class="st-dopamine-settings dopamine-config">
-    <div id="dopamine_settings_container">
-        <h3>Dopamine Configuration</h3>
-
-        <div style="margin-bottom: 15px;">
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                <input type="checkbox" id="dopamine_enabled">
-                <span>Enable Dopamine Extension</span>
-            </label>
+<div class="st-dopamine-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>Dopamine</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
+        <div class="inline-drawer-content">
+            <div id="dopamine_settings_container">
+                <h3>Dopamine Configuration</h3>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
-            <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
-                <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
-                <input type="number" id="dopamine_min_timer" min="1" max="100" value="10" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
-            </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="dopamine_enabled">
+                        <span>Enable Dopamine Extension</span>
+                    </label>
+                </div>
 
-            <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
-                <label for="dopamine_max_timer">Maximum Timer (hours):</label>
-                <input type="number" id="dopamine_max_timer" min="1" max="168" value="72" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
-            </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px;">
+                    <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
+                        <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
+                        <input type="number" id="dopamine_min_timer" min="1" max="100" value="10" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
+                    </div>
 
-            <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
-                <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
-                <input type="number" id="dopamine_polling_interval" min="10" max="300" value="30" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
-            </div>
-        </div>
+                    <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
+                        <label for="dopamine_max_timer">Maximum Timer (hours):</label>
+                        <input type="number" id="dopamine_max_timer" min="1" max="168" value="72" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
+                    </div>
 
-        <div class="dopamine-timers-list">
-            <h3>Active Timers & Alarms</h3>
-            <div id="dopamine_timers_display">
-                <p style="color: rgba(255,255,255,0.5); font-style: italic; padding: 15px; text-align: center;">Loading timers...</p>
+                    <div style="display: flex; flex-direction: column; gap: 5px; min-width: 150px;">
+                        <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
+                        <input type="number" id="dopamine_polling_interval" min="10" max="300" value="30" style="padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #ffffff;">
+                    </div>
+                </div>
+
+                <div class="dopamine-timers-list">
+                    <h3>Active Timers & Alarms</h3>
+                    <div id="dopamine_timers_display">
+                        <p style="color: rgba(255,255,255,0.5); font-style: italic; padding: 15px; text-align: center;">Loading timers...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
