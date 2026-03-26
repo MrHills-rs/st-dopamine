@@ -625,7 +625,7 @@ jQuery(async () => {
     // Render settings HTML
     try {
         const { renderExtensionTemplateAsync } = await import('../../../extensions.js');
-        const html = await renderExtensionTemplateAsync('third-party/Extension-Dopamine', 'settings');
+        const html = await renderExtensionTemplateAsync('third-party/st-dopamine', 'settings');
 
         const getContainer = () => $(document.getElementById('dopamine_settings_container') ?? document.getElementById('extensions_settings2'));
         getContainer().append(html);

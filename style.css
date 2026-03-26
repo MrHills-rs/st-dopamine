@@ -1,11 +1,12 @@
-/* Dopamine Extension Styles */
+/* Dopamine Extension Styles - SCOPED TO EXTENSION SETTINGS ONLY */
 
-.dopamine-settings {
+/* All styles are scoped to .st-dopamine-settings to prevent bleeding */
+.st-dopamine-settings {
     padding: 10px;
     font-family: var(--SmartThemeFontFamily, inherit);
 }
 
-.dopamine-config {
+.st-dopamine-settings .dopamine-config {
     margin-bottom: 20px;
     padding: 15px;
     background: var(--SmartThemeBlurTintColor, rgba(0, 0, 0, 0.2));
@@ -13,14 +14,14 @@
     border: 1px solid var(--SmartThemeBorderColor, rgba(255, 255, 255, 0.1));
 }
 
-.dopamine-config h3 {
+.st-dopamine-settings .dopamine-config h3 {
     margin-top: 0;
     margin-bottom: 15px;
     color: var(--SmartThemeQuoteColor, #ff9800);
     font-size: 1.1em;
 }
 
-.dopamine-timers-list {
+.st-dopamine-settings .dopamine-timers-list {
     margin-top: 20px;
     padding: 15px;
     background: var(--SmartThemeBlurTintColor, rgba(0, 0, 0, 0.2));
@@ -28,20 +29,20 @@
     border: 1px solid var(--SmartThemeBorderColor, rgba(255, 255, 255, 0.1));
 }
 
-.dopamine-timers-list h3 {
+.st-dopamine-settings .dopamine-timers-list h3 {
     margin-top: 0;
     margin-bottom: 10px;
     color: var(--SmartThemeQuoteColor, #ff9800);
     font-size: 1em;
 }
 
-.dopamine-list {
+.st-dopamine-settings .dopamine-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.dopamine-item {
+.st-dopamine-settings .dopamine-item {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -54,11 +55,11 @@
     transition: background 0.2s ease;
 }
 
-.dopamine-item:hover {
+.st-dopamine-settings .dopamine-item:hover {
     background: var(--SmartThemeMonochromeTint, rgba(255, 255, 255, 0.08));
 }
 
-.dopamine-id {
+.st-dopamine-settings .dopamine-id {
     font-family: 'Courier New', monospace;
     font-size: 0.85em;
     color: var(--SmartThemeAccentColor, #4fc3f7);
@@ -67,54 +68,54 @@
     border-radius: 4px;
 }
 
-.dopamine-text {
+.st-dopamine-settings .dopamine-text {
     flex: 1;
     min-width: 200px;
     color: var(--SmartThemeFontColor, #ffffff);
     font-size: 0.95em;
 }
 
-.dopamine-time {
+.st-dopamine-settings .dopamine-time {
     color: var(--SmartThemeQuoteColor, #ff9800);
     font-size: 0.85em;
     white-space: nowrap;
 }
 
-.dopamine-next {
+.st-dopamine-settings .dopamine-next {
     color: var(--SmartThemeFontColorAlt, rgba(255, 255, 255, 0.7));
     font-size: 0.8em;
     width: 100%;
     margin-top: 4px;
 }
 
-.dopamine-empty {
+.st-dopamine-settings .dopamine-empty {
     color: var(--SmartThemeFontColorAlt, rgba(255, 255, 255, 0.5));
     font-style: italic;
     padding: 15px;
     text-align: center;
 }
 
-.flex-container {
+.st-dopamine-settings .flex-container {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 15px;
 }
 
-.flex-item {
+.st-dopamine-settings .flex-item {
     display: flex;
     flex-direction: column;
     gap: 5px;
     min-width: 150px;
 }
 
-.flex-item label {
+.st-dopamine-settings .flex-item label {
     font-size: 0.9em;
     color: var(--SmartThemeFontColorAlt, rgba(255, 255, 255, 0.8));
 }
 
-.flex-item input[type="number"],
-.flex-item input[type="text"] {
+.st-dopamine-settings .flex-item input[type="number"],
+.st-dopamine-settings .flex-item input[type="text"] {
     padding: 8px;
     border-radius: 4px;
     border: 1px solid var(--SmartThemeBorderColor, rgba(255, 255, 255, 0.2));
@@ -123,19 +124,19 @@
     font-size: 0.9em;
 }
 
-.flex-item input[type="checkbox"] {
+.st-dopamine-settings .flex-item input[type="checkbox"] {
     margin-right: 8px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-    .dopamine-item {
+    .st-dopamine-settings .dopamine-item {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .dopamine-time,
-    .dopamine-next {
+    .st-dopamine-settings .dopamine-time,
+    .st-dopamine-settings .dopamine-next {
         width: 100%;
     }
 }
