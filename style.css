@@ -140,3 +140,19 @@
         width: 100%;
     }
 }
+/* Add these for inline-drawer compatibility */
+.st-dopamine-settings .inline-drawer-content {
+    padding: 10px 0;
+}
+
+.st-dopamine-settings .inline-drawer-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.st-dopamine-settings .checkbox_label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}

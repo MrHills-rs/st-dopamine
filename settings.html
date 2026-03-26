@@ -1,38 +1,48 @@
-<div class="st-dopamine-settings" id="st-dopamine-settings">
-    <div class="dopamine-config" id="dopamine_config">
-        <h3>Dopamine Configuration</h3>
-
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>
-                    <input type="checkbox" id="dopamine_enabled">
-                    Enable Dopamine Extension
-                </label>
+<div class="st-dopamine-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <div class="flex-container alignitemscenter margin0">
+                <b>Dopamine</b>
             </div>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
+        <div class="inline-drawer-content">
+            <div class="dopamine-config">
+                <h3>Dopamine Configuration</h3>
 
-        <div class="flex-container">
-            <div class="flex-item">
-                <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
-                <input type="number" id="dopamine_min_timer" min="1" max="1440" value="10">
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label class="checkbox_label">
+                            <input type="checkbox" id="dopamine_enabled">
+                            <span>Enable Dopamine Extension</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
+                        <input type="number" id="dopamine_min_timer" min="1" max="1440" value="10">
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="dopamine_max_timer">Maximum Timer (hours):</label>
+                        <input type="number" id="dopamine_max_timer" min="1" max="168" value="72">
+                    </div>
+
+                    <div class="flex-item">
+                        <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
+                        <input type="number" id="dopamine_polling_interval" min="5" max="300" value="30">
+                    </div>
+                </div>
             </div>
 
-            <div class="flex-item">
-                <label for="dopamine_max_timer">Maximum Timer (hours):</label>
-                <input type="number" id="dopamine_max_timer" min="1" max="168" value="72">
+            <div class="dopamine-timers-list">
+                <h3>Active Timers & Alarms</h3>
+                <div id="dopamine_settings_container">
+                    <p class="dopamine-empty">Loading timers...</p>
+                </div>
             </div>
-
-            <div class="flex-item">
-                <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
-                <input type="number" id="dopamine_polling_interval" min="5" max="300" value="30">
-            </div>
-        </div>
-    </div>
-
-    <div class="dopamine-timers-list" id="dopamine_timers_list">
-        <h3>Active Timers & Alarms</h3>
-        <div id="dopamine_settings_container">
-            <p class="dopamine-empty">Loading timers...</p>
         </div>
     </div>
 </div>
