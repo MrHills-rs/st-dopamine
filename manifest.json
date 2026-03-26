@@ -10,6 +10,5 @@
     "author": "Qwen35",
     "version": "0.0.1",
     "homePage": "https://github.com/MrHills-rs/st-dopamine",
-    "auto_update": false,
-    "settings": true
+    "auto_update": false
 }
