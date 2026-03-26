@@ -1,0 +1,15 @@
+{
+    "display_name": "Dopamine",
+    "description": "Adds Dopamine",
+    "loading_order": 100,
+    "requires": [],
+    "optional": [],
+    "dependencies": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Qwen35",
+    "version": "0.0.1",
+    "homePage": "https://github.com/MrHills-rs/st-dopamine",
+    "auto_update": false,
+    "settings": true
+}

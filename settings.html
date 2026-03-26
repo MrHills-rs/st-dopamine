@@ -1,0 +1,36 @@
+<div id="dopamine_settings_container">
+    <div class="dopamine-config">
+        <h3>Dopamine Configuration</h3>
+
+        <div class="flex-item">
+            <label>
+                <input type="checkbox" id="dopamine_enabled">
+                Enable Dopamine Extension
+            </label>
+        </div>
+
+        <div class="flex-container">
+            <div class="flex-item">
+                <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
+                <input type="number" id="dopamine_min_timer" min="1" max="100">
+            </div>
+
+            <div class="flex-item">
+                <label for="dopamine_max_timer">Maximum Timer (hours):</label>
+                <input type="number" id="dopamine_max_timer" min="1" max="168">
+            </div>
+
+            <div class="flex-item">
+                <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
+                <input type="number" id="dopamine_polling_interval" min="10" max="300">
+            </div>
+        </div>
+    </div>
+
+    <div class="dopamine-timers-list">
+        <h3>Active Timers & Alarms</h3>
+        <div id="dopamine_timers_display">
+            <!-- Timers will be rendered here by JavaScript -->
+        </div>
+    </div>
+</div>
