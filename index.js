@@ -608,7 +608,54 @@ window.addEventListener('beforeunload', () => {
 });
 
 
+
 // ========== INITIALIZATION ==========
+
+const SETTINGS_HTML = `
+<div class="st-dopamine-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <div class="flex-container alignItemsCenter margin0">
+                <b>Dopamine</b>
+            </div>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div class="dopamine-config">
+                <h3>Dopamine Configuration</h3>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label class="checkbox_label">
+                            <input type="checkbox" id="dopamine_enabled">
+                            <span>Enable Dopamine Extension</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <label for="dopamine_min_timer">Minimum Timer (minutes):</label>
+                        <input type="number" id="dopamine_min_timer" min="1" max="1440" value="10">
+                    </div>
+                    <div class="flex-item">
+                        <label for="dopamine_max_timer">Maximum Timer (hours):</label>
+                        <input type="number" id="dopamine_max_timer" min="1" max="168" value="72">
+                    </div>
+                    <div class="flex-item">
+                        <label for="dopamine_polling_interval">Polling Interval (seconds):</label>
+                        <input type="number" id="dopamine_polling_interval" min="5" max="300" value="30">
+                    </div>
+                </div>
+            </div>
+            <div class="dopamine-timers-list">
+                <h3>Active Timers & Alarms</h3>
+                <div id="dopamine_settings_container">
+                    <p class="dopamine-empty">No timers active</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
 
 jQuery(async () => {
     // Initialize settings
@@ -622,98 +669,83 @@ jQuery(async () => {
         }
     }
 
-    // Render settings HTML
-    try {
-        const html = await renderExtensionTemplateAsync('third-party/st-dopamine', 'settings');
-
-        // Append to extensions settings container
-        const container = $('#extensions_settings2');
-        if (container.length === 0) {
-            console.error('[Dopamine] Could not find extensions_settings2 container');
-            return;
-        }
-
-        container.append(html);
-        console.log('[Dopamine] Settings HTML appended');
-
-        // Bind settings controls - make sure elements exist first
-        await new Promise(resolve => setTimeout(resolve, 100)); // Small delay for DOM
-
-        const $enabled = $('#dopamine_enabled');
-        const $minTimer = $('#dopamine_min_timer');
-        const $maxTimer = $('#dopamine_max_timer');
-        const $pollingInterval = $('#dopamine_polling_interval');
-
-        if ($enabled.length === 0 || $minTimer.length === 0 || $maxTimer.length === 0 || $pollingInterval.length === 0) {
-            console.error('[Dopamine] Could not find settings elements. Check settings.html');
-            console.log('[Dopamine] Available IDs:', $('[id]').map((_, el) => el.id).get());
-            return;
-        }
-
-        $minTimer.val(extension_settings.dopamine.minTimerMinutes);
-        $minTimer.on('change', () => {
-            extension_settings.dopamine.minTimerMinutes = Number($minTimer.val());
-            saveSettingsDebounced();
-        });
-
-        $maxTimer.val(extension_settings.dopamine.maxTimerHours);
-        $maxTimer.on('change', () => {
-            extension_settings.dopamine.maxTimerHours = Number($maxTimer.val());
-            saveSettingsDebounced();
-        });
-
-        $pollingInterval.val(extension_settings.dopamine.pollingIntervalSeconds);
-        $pollingInterval.on('change', () => {
-            extension_settings.dopamine.pollingIntervalSeconds = Number($pollingInterval.val());
-            saveSettingsDebounced();
-            startPolling();
-        });
-
-        $enabled.prop('checked', extension_settings.dopamine.enabled);
-        $enabled.on('change', () => {
-            extension_settings.dopamine.enabled = !!$enabled.prop('checked');
-            registerFunctionTools();
-            saveSettingsDebounced();
-
-            if (extension_settings.dopamine.enabled) {
-                startPolling();
-                startSettingsRefresh();
-            } else {
-                stopPolling();
-                stopSettingsRefresh();
-            }
-        });
-
-        // Initial render of timers list
-        renderSettings();
-        startSettingsRefresh();
-
-        console.log('[Dopamine] Settings binding complete');
-    } catch (error) {
-        console.error('[Dopamine] Failed to render settings:', error);
+    // Append settings HTML directly (no template loading)
+    const container = $('#extensions_settings2');
+    if (container.length === 0) {
+        console.error('[Dopamine] Could not find extensions_settings2 container');
+        return;
     }
 
-    // Register function tools
+    container.append(SETTINGS_HTML);
+    console.log('[Dopamine] Settings HTML appended');
+
+    // Small delay for DOM to settle
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    // Bind settings controls
+    const $enabled = $('#dopamine_enabled');
+    const $minTimer = $('#dopamine_min_timer');
+    const $maxTimer = $('#dopamine_max_timer');
+    const $pollingInterval = $('#dopamine_polling_interval');
+
+    if ($enabled.length === 0) {
+        console.error('[Dopamine] Settings elements not found!');
+        return;
+    }
+
+    $minTimer.val(extension_settings.dopamine.minTimerMinutes);
+    $minTimer.on('change', () => {
+        extension_settings.dopamine.minTimerMinutes = Number($minTimer.val());
+        saveSettingsDebounced();
+    });
+
+    $maxTimer.val(extension_settings.dopamine.maxTimerHours);
+    $maxTimer.on('change', () => {
+        extension_settings.dopamine.maxTimerHours = Number($maxTimer.val());
+        saveSettingsDebounced();
+    });
+
+    $pollingInterval.val(extension_settings.dopamine.pollingIntervalSeconds);
+    $pollingInterval.on('change', () => {
+        extension_settings.dopamine.pollingIntervalSeconds = Number($pollingInterval.val());
+        saveSettingsDebounced();
+        startPolling();
+    });
+
+    $enabled.prop('checked', extension_settings.dopamine.enabled);
+    $enabled.on('change', () => {
+        extension_settings.dopamine.enabled = !!$enabled.prop('checked');
+        registerFunctionTools();
+        saveSettingsDebounced();
+
+        if (extension_settings.dopamine.enabled) {
+            startPolling();
+            startSettingsRefresh();
+        } else {
+            stopPolling();
+            stopSettingsRefresh();
+        }
+    });
+
+    // Initial render
+    renderSettings();
+    startSettingsRefresh();
     registerFunctionTools();
 
-    // Start polling if enabled
     if (extension_settings.dopamine?.enabled) {
         startPolling();
     }
 
-    // Register debug functions
+    // Debug functions
     registerDebugFunction('clearDopamineCache', 'Clear Dopamine timers', 'Deletes all active timers and alarms.', async () => {
         await storage.clear();
-        console.log('[Dopamine] All timers cleared');
-        toastr.success('[Dopamine] All timers and alarms cleared');
+        toastr.success('[Dopamine] All timers cleared');
         renderSettings();
     });
 
-    registerDebugFunction('listDopamineTimers', 'List Dopamine timers', 'Logs all active timers and alarms to console.', async () => {
+    registerDebugFunction('listDopamineTimers', 'List Dopamine timers', 'Logs all active timers and alarms.', async () => {
         const { timers, alarms } = await loadAllTimers();
-        console.log('[Dopamine] Active Timers:', timers);
-        console.log('[Dopamine] Active Alarms:', alarms);
-        toastr.info(`[Dopamine] ${timers.length} timers, ${alarms.length} alarms active`);
+        toastr.info(\`[Dopamine] \${timers.length} timers, \${alarms.length} alarms\`);
     });
 
     console.log('[Dopamine] Extension initialized');
