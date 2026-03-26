@@ -1,4 +1,4 @@
-import { extension_settings, getContext, registerDebugFunction } from '../../../extensions.js';
+import { extension_settings, getContext, registerDebugFunction, renderExtensionTemplateAsync } from '../../../extensions.js';
 import { saveSettingsDebounced } from '../../../../script.js';
 import { localforage } from '../../../../lib.js';
 import { POPUP_TYPE, callGenericPopup } from '../../../popup.js';
